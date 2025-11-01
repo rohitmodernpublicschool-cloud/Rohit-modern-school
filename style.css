@@ -1,0 +1,1073 @@
+/* Rohit Modern School Custom Stylesheet */
+        /* Inlined from styles.css */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        :root {
+            --header-height: 92px;
+            /* increased header height as requested */
+            /* Photo settings - tweak these to manage sizes and appearance */
+            --leader-size: 120px;
+            /* diameter for leader photos (slightly smaller as requested) */
+            --faculty-height: 140px;
+            /* height for faculty photo area */
+            --photo-border-radius: 10px;
+            --photo-ring: 3px solid rgba(255, 255, 255, 0.08);
+            /* leader-specific offset so foreheads aren't cut - higher value moves the face lower in the frame */
+            --leader-photo-offset: 55%;
+            /* general faculty/photo offset (used by faculty images) */
+            --photo-top-offset: 45%;
+            /* adjust once if you want a taller/shorter header */
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eeaf3 0%, #764ba2 100%);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.5s ease-out;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+
+        }
+
+        /* nav wrapper inside header to keep container consistent */
+        .nav-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            color: white;
+            font-size: 1.35rem;
+            /* larger logo text */
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.15s ease;
+
+
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-img {
+            width: 64px;
+            /* larger logo image */
+            height: 64px;
+            border-radius: 10px;
+            object-fit: cover;
+            display: block;
+            background: rgb(211, 10, 10);
+            padding: 1.0px;
+        }
+
+        @keyframes rotate {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            /* tighter but balanced spacing */
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600p;
+            font-size: 1.150rem;
+            /* slightly larger nav font */
+            position: relative;
+            transition: color 0.18s ease, transform 0.18s ease;
+            padding: 0.7rem 0.35rem;
+            /* more vertical padding to center in taller header */
+            display: inline-block;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 3px;
+            transition: width 0.22s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        /* mobile toggle button */
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            /* bigger toggle for easier tap */
+            cursor: pointer;
+            padding: 0.6rem;
+        }
+
+        .nav-toggle:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+        }
+
+        /* when mobile menu is open we add .open on nav-links to show it */
+        .nav-links.open {
+            display: flex;
+        }
+
+        /* Hero Section */
+        .hero {
+            /* Use local staff.jpg as background; gradient overlay keeps text readable */
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0) 0%, rgba(118, 75, 162, 0.33) 100%),
+                url('staff.jpg') center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            margin-top: 0;
+            /* header now uses padding on body and html scroll-padding-top */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both, pulse 2s infinite;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            animation: none;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+            /* show sections by default so content (images) is visible */
+            opacity: 1;
+            transform: none;
+            animation: none;
+        }
+
+        @keyframes fadeInSection {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #667eea;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: justify;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Leadership Section */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .leader-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .leader-card:hover::before {
+            left: 100%;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Leader photo wrapper - contains an <img> for real photos */
+        .leader-img {
+            width: var(--leader-size);
+            height: var(--leader-size);
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            /* fallback bg while image loads */
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            border: var(--photo-ring);
+            /* position: relative; */
+        }
+
+        .leader-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* use a leader-specific offset so faces (including forehead) stay visible */
+            object-position: center var(--leader-photo-offset);
+            display: block;
+            transition: transform 0.6s ease, opacity 0.24s ease;
+            opacity: 1;
+
+        }
+
+        /* show image when loaded */
+        .leader-img img.loaded {
+            opacity: 1;
+        }
+
+        .leader-card:hover .leader-img img {
+            transform: rotate(360deg) scale(1.02);
+        }
+
+        /* placeholder used when image fails - initials will be inserted here */
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: calc(var(--leader-size) / 3.2);
+        }
+
+        .leader-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .leader-card p {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Faculty Section */
+        .faculty {
+            background: #f8f9fa;
+        }
+
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .faculty-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 340px;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Faculty photo area: use an <img> inside this wrapper to cover the area */
+        .faculty-img {
+
+            width: 100%;
+            height: 60%;
+            /* height: var(--faculty-height); */
+            overflow: hidden;
+            border-radius: var(--photo-border-radius) var(--photo-border-radius) 0 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            /* fallback */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .faculty-img img {
+            width: 100%;
+            height: 210px;
+            object-fit: fill;
+            object-position: top;
+            display: block;
+            transition: transform 0.4s ease, opacity 0.24s ease;
+            opacity: 1;
+        }
+
+        .faculty-img img.loaded {
+            opacity: 1;
+        }
+
+        .faculty-card:hover .faculty-img img {
+            transform: scale(1.08);
+        }
+
+        .photo-placeholder--faculty {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 2.4rem;
+        }
+
+        .faculty-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .faculty-info h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .faculty-info p {
+            color: #666;
+        }
+
+        /* Activities Section */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .activity-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .activity-card:hover .activity-icon {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        .activity-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Parents Section */
+        .parents {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial p {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #f8f9fa;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-icon:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: var(--header-height);
+                right: 0;
+                left: 0;
+                background: linear-gradient(180deg, rgba(118, 75, 162, 0.98), rgba(102, 126, 234, 0.98));
+                flex-direction: column;
+                gap: 0;
+                display: none;
+                padding: 0.75rem 1rem 1.25rem 1rem;
+                border-bottom-left-radius: 12px;
+                border-bottom-right-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            .nav-links li {
+                padding: 0.25rem 0;
+            }
+
+            .nav-links a {
+                font-size: 1.05rem;
+                padding: 0.6rem 0.4rem;
+                display: block;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            /* ensure header uses less horizontal padding on small screens */
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .leadership-grid,
+            .faculty-grid,
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* reduce top offset on small screens so faces remain visible but not too low */
+            :root {
+                --photo-top-offset: 30%;
+                --leader-size: 110px;
+                --faculty-height: 200px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* larger screens: ensure nav-toggle hidden */
+        @media (min-width: 769px) {
+            .nav-toggle {
+                display: none;
+            }
+        }
+
+        /* Additional / Supporting Staff styles */
+        .additional-faculty {
+            background: #f8f9fa;
+            padding: 3rem 0 4rem;
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .staff-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 64px;
+        }
+
+        .staff-card a {
+            font-size: 17px;
+            color: inherit;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+            transition: color 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
+        }
+
+        .staff-card a:hover,
+        .staff-card a:focus {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        /* Color variants for staff cards - match site theme (soft school blues/purples/accents) */
+        .staff-card.color-1 {
+            background: linear-gradient(180deg, #667eea 0%, #8a95f6 100%);
+            color: white;
+            border-color: rgba(102, 126, 234, 0.12);
+        }
+
+        .staff-card.color-2 {
+            background: linear-gradient(180deg, #764ba2 0%, #9661bf 100%);
+            color: white;
+            border-color: rgba(118, 75, 162, 0.12);
+        }
+
+        .staff-card.color-3 {
+            background: linear-gradient(180deg, #4db6ac 0%, #76d8c9 100%);
+            color: #062a2a;
+            border-color: rgba(77, 182, 172, 0.08);
+        }
+
+        .staff-card.color-4 {
+            background: linear-gradient(180deg, #5a6fac 0%, #e9f0ff 100%);
+            color: #163058;
+            border-color: rgba(103, 126, 234, 0.04);
+        }
+
+        .staff-card.color-5 {
+            background: linear-gradient(180deg, #ceb7a3 0%, #fff1e6 100%);
+            color: #4a2b0f;
+            border-color: rgba(255, 200, 150, 0.06);
+        }
+
+        .staff-card.color-6 {
+            background: linear-gradient(180deg, #7c9fab 0%, #cbd6d8 100%);
+            color: #073444;
+            border-color: rgba(0, 180, 200, 0.06);
+        }
+
+        /* Improve hover contrast for colored cards */
+        .staff-card.color-1:hover,
+        .staff-card.color-2:hover,
+        .staff-card.color-3:hover,
+        .staff-card.color-4:hover,
+        .staff-card.color-5:hover,
+        .staff-card.color-6:hover {
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.14);
+        }
+
+        /* Students in Action section styles */
+        .students-action {
+            background: #fbfdff;
+            padding-top: 2.5rem;
+            padding-bottom: 3.5rem;
+        }
+
+        .students-action .section-title {
+            color: #4a6bd6;
+        }
+
+        .students-action p.description {
+            text-align: center;
+            max-width: 900px;
+            margin: 0.5rem auto 1rem;
+            color: #444;
+            font-size: 1rem;
+        }
+
+        .students-action .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            align-items: start;
+            justify-items: center;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .students-action .video-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
+            text-align: center;
+            padding: 0.6rem;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .students-action .video-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 18px 50px rgba(102, 126, 234, 0.18);
+        }
+
+        .students-action .video-wrap {
+            position: relative;
+            padding-top: 177.77%;
+            /* Shorts ratio (9:16) */
+            overflow: hidden;
+            border-radius: 10px;
+            background: #f0f2f5;
+        }
+
+        .students-action .video-wrap iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .students-action .video-card:hover .video-wrap iframe {
+            transform: scale(1.04);
+        }
+
+        .students-action .video-title {
+            margin-top: 0.7rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        @media (max-width: 520px) {
+            .students-action .description {
+                padding: 0 0.75rem;
+            }
+        }
+
+        /* Find Us / Location Section (editable text and colors) */
+        .school-address {
+            background: #f9fbff; /* light background as requested */
+            padding: 4rem 1rem;
+            font-family: Arial, Helvetica, sans-serif; /* easy editable local font */
+        }
+
+        .school-address .wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .school-address .section-title {
+            font-size: 2rem;
+            color: #1e4fe0; /* primary blue - easy to change */
+            margin-bottom: 0.5rem;
+        }
+
+        .school-address .subtitle {
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .school-address .map-container {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(30, 78, 224, 0.12);
+            background: #fff;
+            margin: 0 auto 1.25rem;
+            max-width: 900px;
+        }
+
+        .school-address .map-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+        }
+
+        .school-address .map-wrapper iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .school-address .directions-btn {
+            display: inline-block;
+            background: #1e6ef3; /* blue */
+            color: #fff;
+            padding: 0.75rem 1.25rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(30, 110, 243, 0.12);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+        }
+
+        .school-address .directions-btn:hover,
+        .school-address .directions-btn:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 34px rgba(30, 110, 243, 0.16);
+            background: #145de0;
+        }
+
+        @media (max-width: 768px) {
+            .school-address { padding: 3rem 0.75rem; }
+            .school-address .wrap { padding: 1rem; }
+            .school-address .section-title { font-size: 1.6rem; }
+            .school-address .subtitle { font-size: 0.98rem; }
+        }
+
+        /* Video interaction visuals */
+        .students-action .video-card {
+            position: relative;
+        }
+
+        /* Ensure rounded corners on iframe via wrapper and force hardware accel for smoother animation */
+        .students-action .video-wrap {
+            will-change: transform;
+        }
